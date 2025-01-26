@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Evade : Seek
 {
-    // The maximum prediction time
     float maxPredictionTime = 1f;
 
-    // Overrides the position Seek will aim for
-    // Assume the target will continue traveling in the same direction and speed
-    // Pick a point farther along that vector, but move in the opposite direction
     protected override Vector3 getTargetPosition()
     {
         // 1. Calculate how far ahead in time to predict

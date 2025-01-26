@@ -9,10 +9,7 @@ public class Separation : SteeringBehavior
 
     public Kinematic[] targets;
 
-    // the threshold to take action
-    float threshold = 5f; // 5
-
-    // the constant coefficient of decay for the inverse square law
+    float threshold = 5f;
     float decayCoefficient = 100f;
 
     public override SteeringOutput getSteering()
@@ -26,7 +23,6 @@ public class Separation : SteeringBehavior
 
             if (distance < threshold)
             {
-                // calculate the strength of repulsion
                 float strength = Mathf.Min(decayCoefficient / (distance * distance), maxAcceleration);
                 direction.Normalize();
                 result.linear += strength * direction;

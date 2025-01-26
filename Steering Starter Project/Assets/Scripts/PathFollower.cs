@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PathFollower : Kinematic
 {
-    FollowPath myMoveType; // Handles path-following movement
-    LookWhereGoing myRotateType; // Aligns character rotation to its movement direction
+    FollowPath myMoveType;
+    LookWhereGoing myRotateType;
 
-    public GameObject[] myPath = new GameObject[4]; // Array of waypoints for the path
+    public GameObject[] myPath = new GameObject[4];
 
-    // Start is called before the first frame update
     void Start()
     {
         // Initialize LookWhereGoing rotation behavior
@@ -27,7 +26,6 @@ public class PathFollower : Kinematic
         };
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         // Calculate movement and rotation steering

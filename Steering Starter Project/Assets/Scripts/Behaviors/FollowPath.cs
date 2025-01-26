@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class FollowPath : Seek
 {
-    public GameObject[] path; // Array of waypoints
-    private int currentPathIndex = 0; // Current waypoint index
-    public float targetRadius = 0.5f; // Distance to consider the waypoint reached
+    public GameObject[] path;
+    private int currentPathIndex = 0;
+    public float targetRadius = 0.5f;
 
-    // Calculates steering output for following the path
     public override SteeringOutput getSteering()
     {
         // If no path is defined or has no waypoints, return null
@@ -18,25 +17,23 @@ public class FollowPath : Seek
             return null;
         }
 
-        // Find the nearest waypoint as the initial target if no target is set
         if (target == null)
         {
             target = FindNearestWaypoint();
         }
 
-        // Check if the character has reached the current target waypoint
+        // Check if reached the current target waypoint
         if (IsTargetReached())
         {
             // Move to the next waypoint in the path
-            currentPathIndex = (currentPathIndex + 1) % path.Length; // Loop back to start
+            currentPathIndex = (currentPathIndex + 1) % path.Length; // Loop back to the start
             target = path[currentPathIndex];
         }
 
-        // Delegate the steering to Seek
+        // Delegate the steering to seek
         return base.getSteering();
     }
 
-    // Finds the nearest waypoint to the character
     private GameObject FindNearestWaypoint()
     {
         int nearestIndex = 0;
@@ -52,11 +49,10 @@ public class FollowPath : Seek
             }
         }
 
-        currentPathIndex = nearestIndex; // Update the path index to the nearest waypoint
+        currentPathIndex = nearestIndex;
         return path[nearestIndex];
     }
 
-    // Checks if the character has reached the current target
     private bool IsTargetReached()
     {
         float distanceToTarget = Vector3.Distance(character.transform.position, target.transform.position);

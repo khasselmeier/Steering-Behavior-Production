@@ -9,13 +9,9 @@ public class Wander : Seek
     float wanderRadius;
 
     float wanderRate = 2;
-
     float wanderOrientation = 0;
-
     float maxAcceleration = 100f;
 
-
-    // Update is called once per frame
     public override SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
